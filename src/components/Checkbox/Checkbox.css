@@ -1,0 +1,19 @@
+.checkbox-container {
+    border: 1px solid pink;
+    min-height: 20px;
+    min-width: 20px;
+    border-radius: 8px;
+    margin: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+
+.checkbox-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 4px;
+    background-color: pink;
+}
