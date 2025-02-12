@@ -11,11 +11,9 @@ type IItemProps = {
 }
 
 const Item = (props : IItemProps) => {
-    
 
     const titleStyle = {textDecoration: props.todo.isDone ? 'line-through' : "none"}
-
-
+    
     return(
         <div className="item-container">
             <CheckBox value={props.todo.isDone} onChange={(value:boolean)=> {

@@ -1,4 +1,3 @@
-
 const key = 'todoList'
 const lastIdKey = "lastId"
 
