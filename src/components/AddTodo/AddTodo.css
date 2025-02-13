@@ -12,6 +12,7 @@
 .add-input {
     flex: auto;
     height: 42px;
+    width: 50%;
     border-radius: 4px;
     border: 1px solid pink;
     background-color: #00000000;
