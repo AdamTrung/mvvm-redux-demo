@@ -8,6 +8,7 @@ import AddTodo from "../components/AddTodo/AddTodo"
 const Todo = () => {
     const { list, addTodo, deleteTodo, updateTodo } = TodoViewModel()
 
+    console.log(list);
 
     return(
         <div className="view-container">

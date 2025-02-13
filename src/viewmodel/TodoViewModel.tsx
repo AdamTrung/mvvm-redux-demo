@@ -1,54 +1,38 @@
-import { useEffect, useState } from "react"
-import uuid from "../utils/uuid"
-import { getTodo, setTodo } from "../model/TodoModel"
-import { ITodo } from "../network/Types"
+import { useState } from "react"
+import { store } from "../redux/store/store"
+import { addTodoRedux, deleteTodoRedux, updateTaskRedux } from "../redux/slices/todoSlice"
+import { updateId } from "../redux/slices/idSlice"
 
 const TodoViewModel = () => {
-    const [list, setList] = useState<Array<ITodo>>([])
-
-    useEffect(()=> {
-        loadData()
-    },[])
-
-    const loadData = () => {
-        setList(getTodo())
-    }
+    const [onChange, setOnChange] = useState<boolean>(false);
 
     const addTodo = (title:string) => {
-
         let item = {
-            id: uuid(),
+            id: store.getState().ids.id,
             title: title,
             isDone: false
         }
-        const data = [item, ...list]
-        setList(data)
-        setTodo(data)
+        store.dispatch(addTodoRedux(item));
+        store.dispatch(updateId());
+        setOnChange(!onChange);
     }
 
     const deleteTodo = (id:string) => {
-        const data = list.filter((todo: ITodo) => todo.id !== id)
-        setList(data)
-        setTodo(data)
+        store.dispatch(deleteTodoRedux(id));
+        setOnChange(!onChange);
     }
 
-    const updateTodo = (id: string, value: boolean) => {
-        let updatedList = list.map((el: ITodo) => (el.id === id ? {...el, isDone: value} : el))
-        sortList(updatedList)
-    }
-
-    const sortList = (updatedList: Array<ITodo>) => {
-        const sortedList = updatedList.sort((a, b) => (!b.isDone ? 1 : -1))
-        setList(sortedList)
-        setTodo(sortedList)
+    const updateTodo = (id: string) => {
+        store.dispatch(updateTaskRedux(id));
+        setOnChange(!onChange);
     }
 
     return {
-        list: list,
+        list: store.getState().todos.todoList,
         addTodo: addTodo,
         deleteTodo: deleteTodo,
-        updateTodo: updateTodo
+        updateTodo: updateTodo,
     }
 }
 
-export default TodoViewModel
+export default TodoViewModel;

@@ -7,23 +7,23 @@ type IAddTodoProps = {
 
 const AddTodo = (props:IAddTodoProps) => {
 
-    const [todo, setTodo] = useState<string>("")
+    const [task, setTask] = useState<string>("");
 
     return(
         <div className="add-container">
             <input 
                 className="add-input" 
                 autoCapitalize="sentences"
-                value={todo} 
-                onInput={e => setTodo(e.target.value)}
+                value={task} 
+                onInput={e => setTask(e.target.value)}
             />
             <button 
                 onClick={()=>{
-                    if (todo.length > 0) {
-                        props.addTodo(todo)
-                        setTodo("")
+                    if (task.length > 0) {
+                        props.addTodo(task);
+                        setTask("");
                     } else {
-                        alert("Enter a todo")
+                        alert("Enter a todo");
                     }
                 }} 
                 className="add-button" title="Add"
@@ -35,4 +35,4 @@ const AddTodo = (props:IAddTodoProps) => {
 }
 
 
-export default AddTodo
+export default AddTodo;

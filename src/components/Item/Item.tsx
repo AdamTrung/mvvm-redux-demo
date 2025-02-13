@@ -6,7 +6,7 @@ import { ITodo } from "../../network/Types"
 
 type IItemProps = {
     todo: ITodo,
-    toggleStatus: (id: string, value: boolean) => void,
+    toggleStatus: (id: string) => void,
     onDelete: (id: string) => void,
 }
 
@@ -16,8 +16,8 @@ const Item = (props : IItemProps) => {
     
     return(
         <div className="item-container">
-            <CheckBox value={props.todo.isDone} onChange={(value:boolean)=> {
-                props.toggleStatus(props.todo.id, value)
+            <CheckBox value={props.todo.isDone} onChange={()=> {
+                props.toggleStatus(props.todo.id)
             }}/>
             <h3 className="item-title" style={titleStyle}>
                 {props.todo.title}
